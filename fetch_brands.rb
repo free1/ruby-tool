@@ -10,7 +10,7 @@ class Brand < ActiveRecord::Base
 	db_config = {
 		:adapter  => "mysql2",
 	  :encoding => 'utf8',
-	  # :host     => "54.223.213.136",
+	  # :host     => "ip",
 	  :username => "root",
 	  :password => "123",
 	  :database => "makehave_development"
