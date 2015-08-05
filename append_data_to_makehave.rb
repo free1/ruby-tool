@@ -5,7 +5,7 @@ require 'active_record'
 
 class Product1 < ActiveRecord::Base
 	self.table_name = "products"
-	self.primary_key = "origin_id"
+	# self.primary_key = "origin_id"
 	has_many :product_details1, class_name: 'ProductDetail1', foreign_key: 'product_id'
 	has_many :product_categories1, class_name: 'ProductCategory1', foreign_key: 'origin_id'
 	has_many :categories1, through: :product_categories1
