@@ -137,7 +137,8 @@ Product1.find_each.each do |product1|
 	product2 = Product2.new
 	product2.title = product1.name
 	product2.original_site_id = product1.origin_id
-	product2.source_site = "http://www.farfetch.com#{product1.item_url}"
+	# product2.source_site = "http://www.farfetch.com#{product1.item_url}"
+	product2.source_site = "#{product1.item_url}"
 	# product2.images_path = product1.image_url
 	product2.watch_count = 0
 	product2.status = 1
