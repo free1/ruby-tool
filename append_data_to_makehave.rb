@@ -5,7 +5,7 @@ require 'active_record'
 
 class Product1 < ActiveRecord::Base
 	self.table_name = "products"
-	# self.primary_key = "origin_id"
+	self.primary_key = "origin_id"
 	has_many :product_details1, class_name: 'ProductDetail1', foreign_key: 'product_id'
 	has_many :product_categories1, class_name: 'ProductCategory1', foreign_key: 'origin_id'
 	has_many :categories1, through: :product_categories1
@@ -143,8 +143,10 @@ Product1.find_each.each do |product1|
 	product2.status = 1
 
 	# product1.categories1.each do |category1|
-	# 	category2 = Category2.create(name: category1.name)
-	# 	ProductCategory2.create(product_id: product2.id, category_id: category2.id)
+	# 	product2 = Product2.where(original_site_id: product1.origin_id).first
+	# 	category2 = Category2.find_or_create_by(name: category1.name)
+	# 	ProductCategory2.find_or_create_by(product_id: product2.id, category_id: category2.id)
+	# 	p "success"
 	# end
 
 	# p product1
@@ -166,8 +168,8 @@ Product1.find_each.each do |product1|
 		else
 			p 'product error'
 		end
-
 	end
+
 end
 
 
