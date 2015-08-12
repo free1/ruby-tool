@@ -132,94 +132,23 @@ class Category2 < ActiveRecord::Base
 end
 
 Product1.find_each.each do |product1|
-# 	p "=======s=ss=s=s=s=s=s"
-# 	# product2 = Product2.new
-# 	# product2.title = product1.name
-# 	# product2.original_site_id = product1.origin_id
-# 	# # product2.source_site = "http://www.farfetch.com#{product1.item_url}"
-# 	# product2.source_site = "#{product1.item_url}"
-# 	# product2.thumb_image_path = product1.image_url
-# 	# # product2.images_path = product1.image_url
-
-# 	# product2.watch_count = 0
-# 	# product2.status = 1
-
-	# product1.categories1.each do |category1|
-	# 	product2 = Product2.where(original_site_id: product1.origin_id).first
-	# 	category2 = Category2.find_or_create_by(name: category1.name)
-	# 	ProductCategory2.find_or_create_by(product_id: product2.id, category_id: category2.id)
-	# 	p "success"
-	# end
-
-# 	# p product1
-	p "----------------"
-	p product1
-	p '================='
-	p product1.product_details1
-	
 
 	product1.product_details1.find_each do |product_details1|
 		product2 = Product2.where(original_site_id: product1.origin_id).first
-		product_details2 = product2.product_details2.build
-		product_details2.currency_kind = product_details1.currency_id
-		# product_details2.product_id = product_details1.product_id
-		product_details2.price = product_details1.price
-		product_details2.images_path = product_details1.image_url
-		product_details2.description = product_details1.description
+		if product2.present?
+			product_details2 = product2.product_details2.first
 
-		# if product2.save
-			# p 'product success'
-			if product_details2.save
-				p 'product_details success'
-			else
-				p 'product_details error'
+			if product_details2.present?
+				product_details2.size = product_details1.size
+				product_details2.color = product_details1.color
+
+				if product_details2.save
+					p 'product_details success'
+				else
+					p 'product_details error'
+				end
 			end
-		# else
-		# 	p 'product error'
-		# end
+		end
+
 	end
-
 end
-
-
-# Product1.find_each.each do |product1|
-
-# 	p "================="
-# 	product2 = Product2.where(original_site_id: product1.origin_id).first
-# 	unless product2.nil?
-# 		product2.thumb_image_path = product1.image_url 
-# 		if product2.save
-# 			p "succ"
-# 		else
-# 			p "error"
-# 		end
-# 	end
-
-# end
-
-# Product1.find_each.each do |product1|
-# 	p "=======s=ss=s=s=s=s=s"
-# 	product1.product_details1.find_each do |product_details1|
-# 		product2 = Product2.where(original_site_id: product1.origin_id).first
-# 		product_details2 = ProductDetail2.new
-# 		product_details2.currency_kind = product_details1.currency_id
-# 		product_details2.product_id = product_details1.product_id
-# 		product_details2.price = product_details1.price
-# 		product_details2.images_path = product_details1.image_url
-# 		product_details2.product_id = product1.origin_id
-# 		product_details2.describe = product_details1.description
-# 		product_details2.country = product_details1.country
-# 		product_details2.price_without_promotion = product_details1.price_without_promotion
-# 		product_details2.composition = product_details1.composition
-
-# 		if product2.present?
-# 			if product_details2.save
-# 				p 'product_details success'
-# 			else
-# 				p 'product_details error'
-# 			end
-# 		else
-# 			p 'product error'
-# 		end
-# 	end
-# end
