@@ -3,9 +3,9 @@ require 'active_record'
 
 class Product1 < ActiveRecord::Base
 	self.table_name = "products"
-	self.primary_key = "origin_id"
+	# self.primary_key = "origin_id"
 	# has_many :product_details1, class_name: 'ProductDetail1', foreign_key: 'product_id'
-	has_many :product_categories1, class_name: 'ProductCategory1', foreign_key: 'origin_id'
+	has_many :product_categories1, class_name: 'ProductCategory1', foreign_key: 'product_id'
 	has_many :categories1, through: :product_categories1
 
 	db1_config = {
@@ -101,6 +101,8 @@ end
 
 Product1.find_each.each do |product1|
 	p "=======s=ss=s=s=s=s=s"
+	p product1.item_url
+	p product1.categories1
 
 	product1.categories1.each do |category1|
 		product2 = Product2.where(original_site_id: product1.origin_id).first

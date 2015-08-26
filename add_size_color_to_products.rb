@@ -146,43 +146,43 @@ class Brand < ActiveRecord::Base
 end
 
 # size, color
-# Product1.find_each.each do |product1|
+Product1.find_each.each do |product1|
 
-# 	product1.product_details1.find_each do |product_details1|
-# 		product2 = Product2.where(original_site_id: product1.origin_id).first
-# 		if product2.present?
-# 			product_details2 = product2.product_details2.first
+	product1.product_details1.find_each do |product_details1|
+		product2 = Product2.where(original_site_id: product1.origin_id).first
+		if product2.present?
+			product_details2 = product2.product_details2.first
 
-# 			if product_details2.present?
-# 				product_details2.measure = product_details1.size
-# 				product_details2.color = product_details1.color
+			if product_details2.present?
+				# product_details2.measure = product_details1.size
+				product_details2.color = product_details1.color
 
-# 				if product_details2.save
-# 					p 'product_details success'
-# 				else
-# 					p 'product_details error'
-# 				end
-# 			end
-# 		end
+				if product_details2.save
+					p 'product_details success'
+				else
+					p 'product_details error'
+				end
+			end
+		end
 
-# 	end
-# end
+	end
+end
 
 # brand
-Product1.find_each do |product1|
+# Product1.find_each do |product1|
 
-	brand = Brand.where(name: product1.designer_name).first
-	if brand.present?
-		product2 = Product2.where(original_site_id: product1.origin_id).first
-		p product2
-		if product2.present?
-			product2.update_column(:brand_id, brand.id)
-			p "success"
-		else
-			p "error"
-		end
-	else
-		p "404------"
-	end
+# 	brand = Brand.where(name: product1.designer_name).first
+# 	if brand.present?
+# 		product2 = Product2.where(original_site_id: product1.origin_id).first
+# 		p product2
+# 		if product2.present?
+# 			product2.update_column(:brand_id, brand.id)
+# 			p "success"
+# 		else
+# 			p "error"
+# 		end
+# 	else
+# 		p "404------"
+# 	end
 
-end
+# end
