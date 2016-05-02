@@ -100,7 +100,7 @@ class Category2 < ActiveRecord::Base
 	establish_connection(db2_config)
 end
 
-# 5 张表 
+# 5 张表 到 id: 54786
 Product1.find_each do |product1|
 	product_detail2 = ProductDetail2.where(source_site: product1.item_url).last
 	p product1
